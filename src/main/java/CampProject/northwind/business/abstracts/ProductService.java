@@ -8,15 +8,19 @@ import CampProject.northwind.entities.concretes.Product;
 
 public interface ProductService {
 
+	Result add(Product product);
+
 	DataResult<List<Product>> getAll();
 
-	Result add(Product product);
+	DataResult<List<Product>> getAll(int pageNo, int size);
+
+	DataResult<List<Product>> getAllSorted();
 
 	DataResult<Product> getByProductName(String name);
 
-	DataResult<Product> getByProductNameAndCategory_CategoryId(String productName, int categoryId);
+	DataResult<Product> getByProductNameAndCategoryId(String productName, int categoryId);
 
-	DataResult<List<Product>> getByProductNameOrCategory_CategoryId(String productName, int categoryId);
+	DataResult<List<Product>> getByProductNameOrCategoryId(String productName, int categoryId);
 
 	DataResult<List<Product>> getByCategoryIn(int... categories);
 

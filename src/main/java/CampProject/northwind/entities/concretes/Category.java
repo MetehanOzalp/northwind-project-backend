@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "categories")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "products" })
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category {
@@ -26,6 +29,6 @@ public class Category {
 	@Column(name = "category_name")
 	private String categoryName;
 
-	@OneToMany(mappedBy = "categories")
+	@OneToMany(mappedBy = "category")
 	private List<Product> products;
 }

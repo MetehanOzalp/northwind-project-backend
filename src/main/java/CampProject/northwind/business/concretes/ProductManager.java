@@ -3,6 +3,9 @@ package CampProject.northwind.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import CampProject.northwind.business.abstracts.ProductService;
@@ -25,14 +28,26 @@ public class ProductManager implements ProductService {
 	}
 
 	@Override
+	public Result add(Product product) {
+		this.productDao.save(product);
+		return new SuccessResult("Ürün eklendi");
+	}
+
+	@Override
 	public DataResult<List<Product>> getAll() {
 		return new SuccessDataResult<List<Product>>(productDao.findAll(), "Ürünler listelendi");
 	}
 
 	@Override
-	public Result add(Product product) {
-		this.productDao.save(product);
-		return new SuccessResult("Ürün eklendi");
+	public DataResult<List<Product>> getAll(int pageNo, int size) {
+		Pageable pageable = PageRequest.of(pageNo - 1, size);
+		return new SuccessDataResult<List<Product>>(productDao.findAll(pageable).getContent(), "Ürünler listelendi");
+	}
+
+	@Override
+	public DataResult<List<Product>> getAllSorted() {
+		Sort sort = Sort.by(Sort.Direction.DESC, "productName");
+		return new SuccessDataResult<List<Product>>(productDao.findAll(sort), "Ürünler listelendi");
 	}
 
 	@Override
@@ -41,13 +56,13 @@ public class ProductManager implements ProductService {
 	}
 
 	@Override
-	public DataResult<Product> getByProductNameAndCategory_CategoryId(String productName, int categoryId) {
+	public DataResult<Product> getByProductNameAndCategoryId(String productName, int categoryId) {
 		return new SuccessDataResult<Product>(
 				productDao.getByProductNameAndCategory_CategoryId(productName, categoryId), "Ürünler listelendi");
 	}
 
 	@Override
-	public DataResult<List<Product>> getByProductNameOrCategory_CategoryId(String productName, int categoryId) {
+	public DataResult<List<Product>> getByProductNameOrCategoryId(String productName, int categoryId) {
 		return new SuccessDataResult<List<Product>>(
 				productDao.getByProductNameOrCategory_CategoryId(productName, categoryId), "Ürünler listelendi");
 	}
