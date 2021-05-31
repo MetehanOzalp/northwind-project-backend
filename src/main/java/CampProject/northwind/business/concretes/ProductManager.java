@@ -15,6 +15,7 @@ import CampProject.northwind.core.utilities.results.SuccessDataResult;
 import CampProject.northwind.core.utilities.results.SuccessResult;
 import CampProject.northwind.dataAccess.abstracts.ProductDao;
 import CampProject.northwind.entities.concretes.Product;
+import CampProject.northwind.entities.dtos.ProductWithCategoryDto;
 
 @Service
 public class ProductManager implements ProductService {
@@ -87,6 +88,12 @@ public class ProductManager implements ProductService {
 	@Override
 	public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
 		return new SuccessDataResult<List<Product>>(productDao.getByNameAndCategory(productName, categoryId),
+				"Ürünler listelendi");
+	}
+
+	@Override
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+		return new SuccessDataResult<List<ProductWithCategoryDto>>(productDao.getProductWithCategoryDetails(),
 				"Ürünler listelendi");
 	}
 

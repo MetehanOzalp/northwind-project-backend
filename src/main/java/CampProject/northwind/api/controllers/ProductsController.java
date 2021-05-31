@@ -14,6 +14,7 @@ import CampProject.northwind.business.abstracts.ProductService;
 import CampProject.northwind.core.utilities.results.DataResult;
 import CampProject.northwind.core.utilities.results.Result;
 import CampProject.northwind.entities.concretes.Product;
+import CampProject.northwind.entities.dtos.ProductWithCategoryDto;
 
 @RestController
 @RequestMapping("/api/products/")
@@ -61,6 +62,11 @@ public class ProductsController {
 	@GetMapping("getByProductNameContains")
 	public DataResult<List<Product>> getByProductNameContains(@RequestParam String productName) {
 		return this.productService.getByProductNameContains(productName);
+	}
+
+	@GetMapping("getProductWithCategoryDetails")
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+		return productService.getProductWithCategoryDetails();
 	}
 
 }

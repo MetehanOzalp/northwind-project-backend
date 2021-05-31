@@ -5,6 +5,7 @@ import java.util.List;
 import CampProject.northwind.core.utilities.results.DataResult;
 import CampProject.northwind.core.utilities.results.Result;
 import CampProject.northwind.entities.concretes.Product;
+import CampProject.northwind.entities.dtos.ProductWithCategoryDto;
 
 public interface ProductService {
 
@@ -29,4 +30,6 @@ public interface ProductService {
 	DataResult<List<Product>> getByProductNameStartsWith(String productName);
 
 	DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId);
+
+	DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails();
 }
