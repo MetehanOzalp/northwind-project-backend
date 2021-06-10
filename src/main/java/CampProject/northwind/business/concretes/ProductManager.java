@@ -52,6 +52,11 @@ public class ProductManager implements ProductService {
 	}
 
 	@Override
+	public DataResult<Product> getById(int id) {
+		return new SuccessDataResult<Product>(productDao.findById(id).get());
+	}
+
+	@Override
 	public DataResult<Product> getByProductName(String name) {
 		return new SuccessDataResult<Product>(productDao.getByProductName(name), "Ürünler listelendi");
 	}

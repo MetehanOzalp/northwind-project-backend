@@ -50,6 +50,11 @@ public class ProductsController {
 		return this.productService.getAllSorted();
 	}
 
+	@GetMapping("getById")
+	public DataResult<Product> getById(@RequestParam int id) {
+		return this.productService.getById(id);
+	}
+
 	@GetMapping("getByProductName")
 	public DataResult<Product> getByProductName(@RequestParam String productName) {
 		return this.productService.getByProductName(productName);
