@@ -14,7 +14,9 @@ import CampProject.northwind.core.utilities.results.Result;
 import CampProject.northwind.core.utilities.results.SuccessDataResult;
 import CampProject.northwind.core.utilities.results.SuccessResult;
 import CampProject.northwind.dataAccess.abstracts.ProductDao;
+import CampProject.northwind.entities.concretes.Category;
 import CampProject.northwind.entities.concretes.Product;
+import CampProject.northwind.entities.dtos.ProductAddDto;
 import CampProject.northwind.entities.dtos.ProductWithCategoryDto;
 
 @Service
@@ -29,7 +31,10 @@ public class ProductManager implements ProductService {
 	}
 
 	@Override
-	public Result add(Product product) {
+	public Result add(ProductAddDto productAddDto) {
+		Product product = new Product(0, productAddDto.getProductName(), productAddDto.getUnitPrice(),
+				productAddDto.getUnitsInStock(), productAddDto.getQuantityPerUnit(),
+				new Category(productAddDto.getCategoryId(), null, null));
 		this.productDao.save(product);
 		return new SuccessResult("Ürün eklendi");
 	}

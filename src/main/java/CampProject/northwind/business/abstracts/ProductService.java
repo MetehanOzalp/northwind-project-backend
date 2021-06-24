@@ -5,11 +5,12 @@ import java.util.List;
 import CampProject.northwind.core.utilities.results.DataResult;
 import CampProject.northwind.core.utilities.results.Result;
 import CampProject.northwind.entities.concretes.Product;
+import CampProject.northwind.entities.dtos.ProductAddDto;
 import CampProject.northwind.entities.dtos.ProductWithCategoryDto;
 
 public interface ProductService {
 
-	Result add(Product product);
+	Result add(ProductAddDto productAddDto);
 
 	DataResult<List<Product>> getAll();
 

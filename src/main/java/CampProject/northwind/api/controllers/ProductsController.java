@@ -15,6 +15,7 @@ import CampProject.northwind.business.abstracts.ProductService;
 import CampProject.northwind.core.utilities.results.DataResult;
 import CampProject.northwind.core.utilities.results.Result;
 import CampProject.northwind.entities.concretes.Product;
+import CampProject.northwind.entities.dtos.ProductAddDto;
 import CampProject.northwind.entities.dtos.ProductWithCategoryDto;
 
 @RestController
@@ -31,8 +32,8 @@ public class ProductsController {
 	}
 
 	@PostMapping("add")
-	public Result add(@RequestBody Product product) {
-		return this.productService.add(product);
+	public Result add(@RequestBody ProductAddDto productAddDto) {
+		return this.productService.add(productAddDto);
 	}
 
 	@GetMapping("getall")
